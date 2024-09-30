@@ -28,7 +28,6 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
         # 1) if we reached the end of the pattern but not source
         if pind == len(pattern) and sind != len(source):
             result=None
-            print("Source too long")
             break
         # 2) if the current thing in the pattern is a %
         # WARNING: this condition contains the bulk of the code for the assignment
@@ -43,16 +42,11 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
             
             if pind>len(source)-1:
             # Telling the code what to do if the current index of the pattern is over the length of the source
-                # Print statement to tell me the function is returning a blank value and exiting
-                print("Return ''")
                 MergedVals=''
                 result.append(MergedVals)
                 break
             else:
             # Telling the code what to do if pind is within the length of the source
-                # Print statement to tell me the function is running and give me information about the starting index value of source 
-                # and how many values the function will be merging
-                print("Merge:", source[sind], NumMergedVals)
                 # Creating a for loop that appends the next value of source to the list of merged values 
                 # for i in the range of the number of values that need to be merged
                 for i in range(NumMergedVals):
@@ -70,11 +64,7 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
                 # Increasing sind and pind by the correct values so we end up in the correct position in each list
                 sind+=NumMergedVals
                 pind+=1
-
-                # Print statements(to help understand what the code is doing)
-                print("result:", MergedVals)
-                print(sind, pind, len(source), len(pattern))
-
+                
                 # Ending the loop if the index is equal to the length of the pattern to stop an index not in range error
                 if pind==len(pattern):
                     break
@@ -82,16 +72,13 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
         # 3) if we reached the end of the source but not the pattern
         if sind == len(source) and pind != len(pattern):
             result=None
-            print("Pattern too long")
             break
         # 4) if the current thing in the pattern is an _
         if pattern[pind]=="_":
             result.append(source[sind])
-            print(result)
         # 5) if the current thing in the pattern is the same as the current thing in the
         # source
         if pattern[pind]==source[sind]:
-            print("MoveOn")
             pind+=1; sind+=1
             
         # 6) else : this will happen if none of the other conditions are met it
@@ -100,14 +87,10 @@ def match(pattern: List[str], source: List[str]) -> List[str]:
         else:
             if pattern[pind]=="_" or pattern[pind]=="%":
                 pind+=1; sind+=1
-                print("NextVal")
 
             else:
                 result=None
-                print("NoMatch")
                 break
-    print("final: ",result)
-    print(" ")
     return result
 
 
